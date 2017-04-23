@@ -20,8 +20,10 @@ A program to keep two separate directories synced, similar to Dropbox, using soc
 ### A) Manual Mode - Contains a command line interface similar to a shell, to perform the following operations:
 
 #### Commands
-
-∗ index [args]... – Requests the display of the shared files on the connected system. – The flag variable can be:
+```bash
+∗ index [args]... 
+```
+– Requests the display of the shared files on the connected system. – The flag variable can be:
 
 ∗ longlist: Flag would mean that client wants to know the entire listing of the shared directory including ’name’, ’size’, ’timestamp’ and ’type’ of the files. Ex: prompt> index longlist Output: Includes ’name’, ’size’, ’timestamp’ and ’type’ of all the files in the other directory.
 
