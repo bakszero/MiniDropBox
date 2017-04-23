@@ -21,23 +21,44 @@ A program to keep two separate directories synced, similar to Dropbox, using soc
 
 #### Commands
 ```bash
-∗ index [args]... 
+$ index [args]... 
 ```
 – Requests the display of the shared files on the connected system. – The flag variable can be:
+```bash
+$ index longlist
+```
+Flag would mean that client wants to know the entire listing of the shared directory including ’name’, ’size’, ’timestamp’ and ’type’ of the files. Ex: prompt> index longlist Output: Includes ’name’, ’size’, ’timestamp’ and ’type’ of all the files in the other directory.
+```bash
 
-∗ longlist: Flag would mean that client wants to know the entire listing of the shared directory including ’name’, ’size’, ’timestamp’ and ’type’ of the files. Ex: prompt> index longlist Output: Includes ’name’, ’size’, ’timestamp’ and ’type’ of all the files in the other directory.
+$ index shortlist
+```
+This flag would mean that the client only wants to know the names of files between a specific set of timestamps. Epoch form of timestamps has been used here. Ex: prompt> index shortlist Output: Includes ’name’, ’size’, ’timestamp’ and ’type’ of the files between the start and end time stamps.
+```bash
 
-∗ shortlist: This flag would mean that the client only wants to know the names of files between a specific set of timestamps. Epoch form of timestamps has been used here. Ex: prompt> index shortlist Output: Includes ’name’, ’size’, ’timestamp’ and ’type’ of the files between the start and end time stamps.
+$ index regex
+```
+This flag means that the output should be the listing of all files which match the regex. Ex: prompt> index regex .txt$ Output: Details of all files that end with .txt should be displayed.
+```bash
 
-∗ regex: This flag means that the output should be the listing of all files which match the regex. Ex: prompt> index regex .txt$ Output: Details of all files that end with .txt should be displayed.
+ $ hash [args]...
+ ```
+ – This command indicates that the client wants to check if any of the files on the other end have been changed. – The flag variable can be:
+```bash
 
-∗ hash [args]... – This command indicates that the client wants to check if any of the files on the other end have been changed. – The flag variable can be:
+$ hash verify
+```
+Check for the specific file name provided as command line argument and return its ’checksum’ and ’last modified’ timestamp. Ex: promt> hash verify Output: checksum and last modified timestamp of the input file.
+```bash
 
-∗ verify: Check for the specific file name provided as command line argument and return its ’checksum’ and ’last modified’ timestamp. Ex: promt> hash verify Output: checksum and last modified timestamp of the input file.
+$ hash checkall
+```
+Performs ’verify’ for all the files in the shared folder. Ex: prompt> hash checkall Output: filename, checksum and last modified timestamp of all the files in the shared directory.
 
-∗ checkall: Performs ’verify’ for all the files in the shared folder. Ex: prompt> hash checkall Output: filename, checksum and last modified timestamp of all the files in the shared directory.
+```bash
 
-∗ download [args]... – Used to download files from the shared folder of connected user to our shared folder. The flag variable can take the value TCP or UDP depending on the user’s request. If a socket is not available, it is created and both clients use this socket for file transfer.
+$ download [args]...
+```
+– Used to download files from the shared folder of connected user to our shared folder. The flag variable can take the value TCP or UDP depending on the user’s request. If a socket is not available, it is created and both clients use this socket for file transfer.
 
 Ex: prompt> download TCP Output: Displays the filename, filesize, last modified timestamp and the MD5 hash of the requested file. Also downloads the file and verifys it in case of UDP.
 
